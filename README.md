@@ -73,6 +73,14 @@ Perfect Landing Halloween/
 ├── app.css             # Custom CSS (animations, buttons, themes)
 ├── app.js              # Vanilla JavaScript (scroll animations, form validation)
 └── README.md           # This file
+
+---
+
+## 📜 License
+
+This project is released under the [MIT License](./LICENSE).
+
+© 2025 Srijan-XI
 ```
 
 ---
