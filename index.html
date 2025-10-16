@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eldritch Eclipse | Frontend Challenge: Halloween Edition</title>
+    <!-- Load Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter for clean body text and Creepster for spooky titles -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body class="selection:bg-red-800 selection:text-white">
+
+    <!-- HEADER/NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-sm shadow-xl border-b border-red-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-creepster text-white transition duration-300 hover:scale-[1.05]">Eldritch <span class="glow-text text-3xl">Eclipse</span></h1>
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold">
+                <a href="#schedule" class="hover:text-red-600 transition duration-150">Schedule</a>
+                <a href="#features" class="hover:text-red-600 transition duration-150">Attractions</a>
+                <a href="#register" class="crush-btn">
+                    <span>Register Now</span>
+                </a>
+            </nav>
+            <!-- Mobile Menu Placeholder -->
+            <button class="md:hidden text-red-600 text-2xl transition duration-300 hover:scale-110">
+                <!-- Icon: Three horizontal lines (Hamburger) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- 1. HERO SECTION - IMMEDIATE FADE IN -->
+        <section class="hero-bg text-center py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
+            <div class="max-w-4xl mx-auto">
+                <!-- Applied reveal to main content elements with staggered delays -->
+                <p class="text-sm md:text-base text-yellow-400 mb-2 font-semibold tracking-widest uppercase reveal">Frontend Challenge: Halloween Edition</p>
+                <p class="text-xl md:text-2xl text-red-600 mb-4 font-bold tracking-widest reveal delay-1">October 31st | The Midnight Hour</p>
+                <h2 class="font-creepster text-7xl md:text-9xl tracking-tight leading-none text-white mb-6 reveal delay-2 glitch-title">
+                    ELD<span class="glow-text">RITCH</span> ECLIPSE
+                </h2>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 px-4 sm:px-0 reveal delay-3">
+                    Dare to enter the annual festival where the veil between worlds thins. Featuring spectral performances, cursed cocktails, and a night of pure macabre delight. <span class="text-red-500 font-bold">Your ticket is not a guarantee of safe return.</span>
+                </p>
+                <a href="#register" class="btn reveal delay-4">
+                    Secure Your Passage
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. FEATURES/ATTRACTIONS SECTION - REVEAL ON SCROLL -->
+        <section id="features" class="py-20 px-4 bg-[#1a1a1a] reveal">
+            <div class="max-w-7xl mx-auto text-center">
+                <h3 class="text-5xl font-creepster text-white mb-12 border-b-2 border-red-700/50 pb-2 inline-block reveal glitch-title">
+                    The Spectral Lineup
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Feature 1: Cursed Cocktails -->
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-1">
+                        <span class="text-5xl glow-text mb-4 inline-block">🔮</span>
+                        <h4 class="text-2xl font-bold mb-3 text-red-600">Cursed Cocktails</h4>
+                        <p class="text-gray-400">Sample our signature drinks mixed with rare, otherworldly ingredients. Beware the Banshee's Brew—it sees into your soul.</p>
+                    </div>
+
+                    <!-- Feature 2: Séance & Spells -->
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-2">
+                        <span class="text-5xl glow-text mb-4 inline-block">🕯️</span>
+                        <h4 class="text-2xl font-bold mb-3 text-red-600">Séance & Spells</h4>
+                        <p class="text-gray-400">Join Madame Leota for an interactive séance. We guarantee contact with the departed (or your money back, if you survive).</p>
+                    </div>
+                    
+                    <!-- Feature 3: Costume Crypt -->
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-3">
+                        <span class="text-5xl glow-text mb-4 inline-block">💀</span>
+                        <h4 class="text-2xl font-bold mb-3 text-red-600">Costume Crypt</h4>
+                        <p class="text-gray-400">The grand prize is a lifetime supply of fear. Judged by a panel of actual undead ghouls. Dress to terrify.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SCHEDULE SECTION - REVEAL ON SCROLL -->
+        <section id="schedule" class="py-20 px-4 bg-black/80 reveal">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-5xl font-creepster text-center text-white mb-12 border-b-2 border-red-700/50 pb-2 inline-block mx-auto block reveal glitch-title">
+                    The Night's Timeline
+                </h3>
+
+                <div class="space-y-8">
+                    <!-- Event 1 -->
+                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-1">
+                        <div class="flex-shrink-0 text-3xl font-bold text-red-600 mr-6 w-20">20:00</div>
+                        <div>
+                            <h4 class="text-2xl font-creepster text-white mb-1">Gates of Limbo Open</h4>
+                            <p class="text-gray-400">Entry, music begins, and the Midnight Market opens for dark wares.</p>
+                        </div>
+                    </div>
+                    <!-- Event 2 -->
+                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-2">
+                        <div class="flex-shrink-0 text-3xl font-bold text-red-600 mr-6 w-20">22:00</div>
+                        <div>
+                            <h4 class="text-2xl font-creepster text-white mb-1">Spectral Showdown</h4>
+                            <p class="text-gray-400">Live DJ set featuring beats that rattle the bones, and aerial ghost performers.</p>
+                        </div>
+                    </div>
+                    <!-- Event 3 -->
+                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-3">
+                        <div class="flex-shrink-0 text-3xl font-bold text-red-600 mr-6 w-20">00:00</div>
+                        <div>
+                            <h4 class="text-2xl font-creepster text-white mb-1">The Eldritch Eclipse</h4>
+                            <p class="text-gray-400">Costume contest judging and the ceremonial "Summoning of the Dread Host".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. REVIEWS/TESTIMONIALS SECTION - REVEAL ON SCROLL -->
+        <section id="reviews" class="py-20 px-4 bg-[#1a1a1a] reveal">
+            <div class="max-w-7xl mx-auto text-center">
+                <h3 class="text-5xl font-creepster text-white mb-12 border-b-2 border-red-700/50 pb-2 inline-block reveal glitch-title">
+                    Cryptic Reviews
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                    
+                    <div class="bg-gray-950 p-6 rounded-xl shadow-2xl border border-yellow-800/20 transition duration-300 hover:scale-[1.01] hover:shadow-red-900/50 reveal delay-1">
+                        <p class="text-yellow-400 text-3xl mb-3">★★★★★</p>
+                        <blockquote class="text-gray-300 italic mb-4">"My soul was successfully harvested. 10/10, highly recommend this level of existential dread and excellent lighting. The music was terribly catchy."</blockquote>
+                        <p class="text-sm font-bold text-red-600">— A. Specter, The Great Beyond</p>
+                    </div>
+
+                    <div class="bg-gray-950 p-6 rounded-xl shadow-2xl border border-yellow-800/20 transition duration-300 hover:scale-[1.01] hover:shadow-red-900/50 reveal delay-2">
+                        <p class="text-yellow-400 text-3xl mb-3">★★★★★</p>
+                        <blockquote class="text-gray-300 italic mb-4">"The ceremonial summoning was flawless. The blood red punch was to die for. I haven't slept since, but I'm having fun, which is an improvement!"</blockquote>
+                        <p class="text-sm font-bold text-red-600">— G. Houl, Undisclosed Location</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. REGISTRATION FORM (CTA) - REVEAL ON SCROLL -->
+        <section id="register" class="py-20 px-4 bg-black/90 reveal">
+            <div class="max-w-md mx-auto p-8 rounded-xl bg-[#1a1a1a] border border-red-800/50 shadow-2xl reveal delay-1">
+                <h3 class="text-4xl font-creepster text-center text-white mb-6">
+                    Join the Gathering
+                </h3>
+                <p class="text-gray-400 text-center mb-6">Tickets are limited. Claim your spot before the portal closes.</p>
+
+                <form id="registrationForm" class="space-y-5">
+                    
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name (Required)</label>
+                        <input type="text" id="name" name="name" required class="form-input w-full p-3 rounded-lg" placeholder="Your Mortal Name">
+                        <p id="nameError" class="text-red-500 text-sm mt-1 hidden">Please enter your name.</p>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email (Required)</label>
+                        <input type="email" id="email" name="email" required class="form-input w-full p-3 rounded-lg" placeholder="your-soul@otherworld.com">
+                        <p id="emailError" class="text-red-500 text-sm mt-1 hidden">Please enter a valid email address.</p>
+                    </div>
+                    
+                                        <div class="comic-brutal-button-container mt-6">
+                                            <button type="submit" id="submitBtn" class="comic-brutal-button w-full">
+                                                <div class="button-inner">
+                                                    <span class="button-text">Confirm Registration</span>
+                                                    <div class="halftone-overlay"></div>
+                                                    <div class="ink-splatter"></div>
+                                                </div>
+                                                <div class="button-shadow"></div>
+                                                <div class="button-frame"></div>
+                                            </button>
+                                        </div>
+                    
+                    <!-- Success Message Box -->
+                    <div id="successMessage" class="hidden bg-red-900 border border-red-600 text-yellow-300 p-4 rounded-lg text-center font-inter">
+                        <p class="font-bold">✨ Entry Confirmed! ✨</p>
+                        <p class="text-sm">You have secured your place at the Eldritch Eclipse. Check your email for details (or perhaps, a warning).</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-10 border-t border-red-900/50">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 Srijanxi Technologies. All Rights Reserved. 
+                <br /> Not responsible for sudden transportation to other dimensions.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-red-600 transition">FAQ</a>
+                <a href="#" class="hover:text-red-600 transition">The Dread Host</a>
+                <a href="#" class="hover:text-red-600 transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
