@@ -1,3 +1,24 @@
+        // --- LENIS SMOOTH SCROLLING INITIALIZATION ---
+        
+        if (typeof Lenis !== 'undefined') {
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // exponential ease
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
+            requestAnimationFrame(raf);
+        }
+
         // --- JAVASCRIPT FOR SCROLL ANIMATIONS ---
 
         function setupScrollAnimations() {
