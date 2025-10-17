@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="app.css">
     <!-- Lenis Smooth Scrolling -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.js"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Three.js + Vanta.js effects -->
+    <script src="https://unpkg.com/three@0.157.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/vanta@latest/dist/vanta.fog.min.js"></script>
+    <script src="https://unpkg.com/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script src="https://unpkg.com/vanta@latest/dist/vanta.net.min.js"></script>
 </head>
 <body class="selection:bg-red-800 selection:text-white">
 
@@ -36,7 +44,7 @@
     <main>
         
         <!-- 1. HERO SECTION - IMMEDIATE FADE IN -->
-        <section class="hero-bg text-center py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
+    <section class="hero-bg text-center py-20 px-4 bg-gradient-to-b from-gray-900 to-black" data-aos="fade-up" data-aos-duration="900">
             <div class="max-w-4xl mx-auto">
                 <!-- Applied reveal to main content elements with staggered delays -->
                 <p class="text-sm md:text-base text-yellow-400 mb-2 font-semibold tracking-widest uppercase reveal">Frontend Challenge: Halloween Edition</p>
@@ -55,7 +63,7 @@
         </section>
 
         <!-- 2. FEATURES/ATTRACTIONS SECTION - REVEAL ON SCROLL -->
-        <section id="features" class="py-20 px-4 bg-[#1a1a1a] reveal">
+    <section id="features" class="py-20 px-4 bg-[#1a1a1a] reveal" data-aos="fade-up" data-aos-offset="200">
             <div class="max-w-7xl mx-auto text-center">
                 <h3 class="text-5xl font-creepster text-white mb-12 border-b-2 border-red-700/50 pb-2 inline-block reveal glitch-title">
                     The Spectral Lineup
@@ -64,21 +72,21 @@
                 <div class="grid md:grid-cols-3 gap-8">
                     
                     <!-- Feature 1: Cursed Cocktails -->
-                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-1">
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-1" data-aos="zoom-in" data-aos-delay="100">
                         <span class="text-5xl glow-text mb-4 inline-block">🔮</span>
                         <h4 class="text-2xl font-bold mb-3 text-red-600">Cursed Cocktails</h4>
                         <p class="text-gray-400">Sample our signature drinks mixed with rare, otherworldly ingredients. Beware the Banshee's Brew—it sees into your soul.</p>
                     </div>
 
                     <!-- Feature 2: Séance & Spells -->
-                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-2">
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-2" data-aos="zoom-in" data-aos-delay="200">
                         <span class="text-5xl glow-text mb-4 inline-block">🕯️</span>
                         <h4 class="text-2xl font-bold mb-3 text-red-600">Séance & Spells</h4>
                         <p class="text-gray-400">Join Madame Leota for an interactive séance. We guarantee contact with the departed (or your money back, if you survive).</p>
                     </div>
                     
                     <!-- Feature 3: Costume Crypt -->
-                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-3">
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-3" data-aos="zoom-in" data-aos-delay="300">
                         <span class="text-5xl glow-text mb-4 inline-block">💀</span>
                         <h4 class="text-2xl font-bold mb-3 text-red-600">Costume Crypt</h4>
                         <p class="text-gray-400">The grand prize is a lifetime supply of fear. Judged by a panel of actual undead ghouls. Dress to terrify.</p>
@@ -90,7 +98,7 @@
         <!-----------------deal------------>
 
         <!-- Features/Value Proposition (Deals) -->
-        <section id="deals" class="py-20 px-4 bg-[#1a1a1a] reveal">
+    <section id="deals" class="py-20 px-4 bg-[#1a1a1a] reveal" data-aos="fade-up" data-aos-offset="200">
             <div class="max-w-7xl mx-auto text-center">
                 <h3 class="text-5xl font-creepster text-white mb-12 border-b-2 border-red-700/50 pb-2 inline-block reveal glitch-title">
                     The Graveyard of Good Deals
@@ -100,7 +108,7 @@
                 <div class="grid md:grid-cols-3 gap-8">
                     
                     <!-- Feature Card 1 -->
-                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-1">
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-1" data-aos="flip-left" data-aos-delay="100">
                         <span class="text-5xl glow-text mb-4 inline-block" role="img" aria-label="Cauldron icon">&#127860;</span>
                         <h4 class="text-2xl font-bold mb-3 text-red-600">
                             20% Off Costume Supplies
@@ -111,7 +119,7 @@
                     </div>
 
                     <!-- Feature Card 2 -->
-                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-2">
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-2" data-aos="flip-left" data-aos-delay="200">
                         <span class="text-5xl glow-text mb-4 inline-block" role="img" aria-label="Ghost icon">&#128123;</span>
                         <h4 class="text-2xl font-bold mb-3 text-red-600">
                             Haunted House Ticket Discounts
@@ -122,7 +130,7 @@
                     </div>
 
                     <!-- Feature Card 3 -->
-                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-3">
+                    <div class="feature-card p-6 rounded-xl shadow-lg reveal delay-3" data-aos="flip-left" data-aos-delay="300">
                         <span class="text-5xl glow-text mb-4 inline-block" role="img" aria-label="Candy icon">&#127852;</span>
                         <h4 class="text-2xl font-bold mb-3 text-red-600">
                             Trick-or-Treat Route Planner
@@ -136,7 +144,7 @@
         </section>
 
         <!-- 3. SCHEDULE SECTION - REVEAL ON SCROLL -->
-        <section id="schedule" class="py-20 px-4 bg-black/80 reveal">
+    <section id="schedule" class="py-20 px-4 bg-black/80 reveal" data-aos="fade-up" data-aos-offset="200">
             <div class="max-w-4xl mx-auto">
                 <h3 class="text-5xl font-creepster text-center text-white mb-12 border-b-2 border-red-700/50 pb-2 inline-block mx-auto block reveal glitch-title">
                     The Night's Timeline
@@ -144,7 +152,7 @@
 
                 <div class="space-y-8">
                     <!-- Event 1 -->
-                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-1">
+                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-1" data-aos="fade-right" data-aos-delay="100">
                         <div class="flex-shrink-0 text-3xl font-bold text-red-600 mr-6 w-20">20:00</div>
                         <div>
                             <h4 class="text-2xl font-creepster text-white mb-1">Gates of Limbo Open</h4>
@@ -152,7 +160,7 @@
                         </div>
                     </div>
                     <!-- Event 2 -->
-                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-2">
+                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-2" data-aos="fade-right" data-aos-delay="200">
                         <div class="flex-shrink-0 text-3xl font-bold text-red-600 mr-6 w-20">22:00</div>
                         <div>
                             <h4 class="text-2xl font-creepster text-white mb-1">Spectral Showdown</h4>
@@ -160,7 +168,7 @@
                         </div>
                     </div>
                     <!-- Event 3 -->
-                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-3">
+                    <div class="flex items-start bg-gray-950 p-6 rounded-xl border-l-4 border-red-700 shadow-xl transition hover:bg-gray-800 reveal delay-3" data-aos="fade-right" data-aos-delay="300">
                         <div class="flex-shrink-0 text-3xl font-bold text-red-600 mr-6 w-20">00:00</div>
                         <div>
                             <h4 class="text-2xl font-creepster text-white mb-1">The Eldritch Eclipse</h4>
@@ -172,7 +180,7 @@
         </section>
         
         <!-- 4. REVIEWS/TESTIMONIALS SECTION - REVEAL ON SCROLL -->
-        <section id="reviews" class="py-20 px-4 bg-[#1a1a1a] reveal">
+    <section id="reviews" class="py-20 px-4 bg-[#1a1a1a] reveal" data-aos="fade-up" data-aos-offset="200">
             <div class="max-w-7xl mx-auto text-center">
                 <h3 class="text-5xl font-creepster text-white mb-12 border-b-2 border-red-700/50 pb-2 inline-block reveal glitch-title">
                     Cryptic Reviews
@@ -180,13 +188,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
                     
-                    <div class="bg-gray-950 p-6 rounded-xl shadow-2xl border border-yellow-800/20 transition duration-300 hover:scale-[1.01] hover:shadow-red-900/50 reveal delay-1">
+                    <div class="bg-gray-950 p-6 rounded-xl shadow-2xl border border-yellow-800/20 transition duration-300 hover:scale-[1.01] hover:shadow-red-900/50 reveal delay-1" data-aos="zoom-in-up" data-aos-delay="100">
                         <p class="text-yellow-400 text-3xl mb-3">★★★★★</p>
                         <blockquote class="text-gray-300 italic mb-4">"My soul was successfully harvested. 10/10, highly recommend this level of existential dread and excellent lighting. The music was terribly catchy."</blockquote>
                         <p class="text-sm font-bold text-red-600">— A. Specter, The Great Beyond</p>
                     </div>
 
-                    <div class="bg-gray-950 p-6 rounded-xl shadow-2xl border border-yellow-800/20 transition duration-300 hover:scale-[1.01] hover:shadow-red-900/50 reveal delay-2">
+                    <div class="bg-gray-950 p-6 rounded-xl shadow-2xl border border-yellow-800/20 transition duration-300 hover:scale-[1.01] hover:shadow-red-900/50 reveal delay-2" data-aos="zoom-in-up" data-aos-delay="200">
                         <p class="text-yellow-400 text-3xl mb-3">★★★★★</p>
                         <blockquote class="text-gray-300 italic mb-4">"The ceremonial summoning was flawless. The blood red punch was to die for. I haven't slept since, but I'm having fun, which is an improvement!"</blockquote>
                         <p class="text-sm font-bold text-red-600">— G. Houl, Undisclosed Location</p>
@@ -197,7 +205,7 @@
 
 
         <!-- 5. REGISTRATION FORM (CTA) - REVEAL ON SCROLL -->
-        <section id="register" class="py-20 px-4 bg-black/90 reveal">
+    <section id="register" class="py-20 px-4 bg-black/90 reveal" data-aos="fade-up" data-aos-offset="200">
             <div class="max-w-md mx-auto p-8 rounded-xl bg-[#1a1a1a] border border-red-800/50 shadow-2xl reveal delay-1">
                 <h3 class="text-4xl font-creepster text-center text-white mb-6">
                     Join the Gathering

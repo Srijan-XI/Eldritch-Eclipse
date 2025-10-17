@@ -118,3 +118,64 @@
 
         // Initialize scroll animations when the page loads
         window.addEventListener('load', setupScrollAnimations);
+
+        // Initialize AOS (Animate On Scroll) and Vanta background on load
+        window.addEventListener('load', () => {
+            // --- AOS INIT ---
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 700,
+                    easing: 'ease-out',
+                    once: true,
+                    offset: 80,
+                });
+            }
+
+            // --- VANTA INIT (FOG on hero) ---
+            try {
+                if (window.VANTA && typeof window.VANTA.FOG === 'function') {
+                    const el = document.querySelector('.hero-bg');
+                    if (el) {
+                        // Helper to read CSS variables and convert to hex int for Vanta
+                        const getCssVar = (name, fallback) => {
+                            const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+                            return v || fallback;
+                        };
+                        const hexToInt = (hex) => parseInt(hex.replace('#', ''), 16);
+
+                        const colorAccent = hexToInt(getCssVar('--color-accent', '#FFC000'));
+                        const colorHeader = hexToInt(getCssVar('--color-header', '#B30000'));
+                        const colorDark = hexToInt(getCssVar('--color-dark', '#0A0A0A'));
+
+                        // Ensure content stays above the Vanta canvas
+                        el.style.position = el.style.position || 'relative';
+
+                        // Store instance for potential cleanup
+                        window.__vanta = VANTA.FOG({
+                            el,
+                            mouseControls: true,
+                            touchControls: true,
+                            gyroControls: false,
+                            highlightColor: colorAccent,
+                            midtoneColor: colorHeader,
+                            lowlightColor: colorDark,
+                            baseColor: colorDark,
+                            blurFactor: 0.5,
+                            speed: 1.0,
+                            zoom: 0.7,
+                        });
+                    }
+                }
+            } catch (e) {
+                // Silently ignore Vanta init errors to avoid breaking the page
+                console.warn('Vanta init skipped:', e);
+            }
+        });
+
+        // Optional: Cleanup Vanta on page unload (single-page safety)
+        window.addEventListener('beforeunload', () => {
+            if (window.__vanta && typeof window.__vanta.destroy === 'function') {
+                window.__vanta.destroy();
+                window.__vanta = null;
+            }
+        });
