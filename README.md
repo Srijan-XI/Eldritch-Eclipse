@@ -181,16 +181,52 @@ All colors are defined as CSS variables in `app.css`:
 
 ---
 
+## 🎬 Animation Stack
+
+This project uses a **layered animation system** combining multiple modern libraries for smooth, performant effects:
+
+### 🔹 **Lenis** (Smooth Scrolling)
+- CDN: `https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.js`
+- Enables butter-smooth scroll behavior across all browsers
+- Exponential easing for cinematic motion
+
+### 🔹 **AOS (Animate On Scroll)**
+- CDN: `https://unpkg.com/aos@2.3.4/dist/aos.js`
+- Declarative scroll animations via `data-aos` attributes
+- Effects: `fade-up`, `zoom-in`, `flip-left`, `fade-right`, `zoom-in-up`
+- Configured: `duration: 700ms`, `easing: ease-out`, `once: true`, `offset: 80px`
+
+### 🔹 **Vanta.js + Three.js** (Ambient Backgrounds)
+- Three.js: `https://unpkg.com/three@0.157.0/build/three.min.js`
+- Vanta FOG: `https://unpkg.com/vanta@latest/dist/vanta.fog.min.js`
+- Vanta WAVES & NET (optional): `https://unpkg.com/vanta@latest/dist/vanta.*.min.js`
+- Interactive 3D fog effect on hero section
+- Mouse/touch controls enabled
+- Colors synced to CSS theme variables
+
+### 🔹 **Vanilla JavaScript (Custom Reveals)**
+- Intersection Observer for performant scroll-triggered animations
+- `.reveal` class for fade-in + translateY effects
+- Staggered delays (`.delay-1` through `.delay-4`)
+- Used alongside AOS for granular control
+
+---
+
 ## 🎬 Animations Reference
 
-| Animation | Trigger | Effect |
-|-----------|---------|--------|
-| `pulse-glow` | `.glow-text` | 3s pulsating drop-shadow loop |
-| `text-glitch` | `.glitch-title` | 0.2s unsettling text-shadow flicker |
-| `burst` | `.comic-brutal-button:active` | 0.3s scale bounce |
-| `action-lines` | `.comic-brutal-button:active::before` | 0.5s radial gradient animation |
-| `dash` | `.comic-brutal-button:focus::after` | Continuous dashed border animation |
-| Reveal | Scroll into view | 1s fade + translateY transition |
+| Animation | Library | Trigger | Effect |
+|-----------|---------|---------|--------|
+| `pulse-glow` | CSS (Custom) | `.glow-text` | 3s pulsating drop-shadow loop |
+| `text-glitch` | CSS (Custom) | `.glitch-title` | 0.2s unsettling text-shadow flicker |
+| `fade-up` | AOS | Sections/Cards | Smooth fade-in + slide from bottom |
+| `zoom-in` | AOS | Feature cards | Scale entrance with easing |
+| `flip-left` | AOS | Deal cards | Horizontal flip reveal |
+| `fade-right` | AOS | Schedule items | Slide from right with fade |
+| `zoom-in-up` | AOS | Review cards | Scale + slide up entrance |
+| `burst` | CSS (Custom) | `.comic-brutal-button:active` | 0.3s scale bounce |
+| `action-lines` | CSS (Custom) | `.comic-brutal-button:active::before` | 0.5s radial gradient animation |
+| Fog Effect | Vanta.js | Hero background | Real-time 3D fog with mouse interaction |
+| Smooth Scroll | Lenis | Window scroll | Exponential easing for silk-smooth behavior |
 
 ---
 
@@ -220,13 +256,13 @@ Update links in `<head>` of `index.html`:
 
 ---
 
-## 🌐 Browser Compatibility
+## 🧪 Browser Compatibility
 
 - ✅ Chrome 90+
 - ✅ Firefox 88+
 - ✅ Safari 14+
 - ✅ Edge 90+
-- ⚠️ IE 11 (no CSS variables or clip-path support)
+- ⚠️ IE 11 (no CSS variables, clip-path, or Lenis support)
 
 ---
 
@@ -237,8 +273,10 @@ This project demonstrates:
 - **Vanilla JavaScript** – Event listeners, DOM manipulation, regex validation
 - **Intersection Observer API** – Efficient scroll-based animations
 - **Modern CSS** – Variables, clip-path, box-shadow, mix-blend-mode
+- **Ambient 3D Effects** – Vanta.js with Three.js integration
+- **Smooth Scrolling** – Lenis for cinematic motion
 - **Responsive Design** – Tailwind utilities, mobile-first approach
-- **Accessibility** – Form labels, semantic HTML, focus states
+- **Accessibility** – Form labels, semantic HTML, focus states, ARIA attributes
 
 ---
 
