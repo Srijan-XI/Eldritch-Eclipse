@@ -1,3 +1,40 @@
+        // --- MOBILE MENU TOGGLE ---
+        
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (!mobileMenuBtn || !mobileMenu) return;
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Close menu when clicking on a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
         // --- LENIS SMOOTH SCROLLING INITIALIZATION ---
         
         if (typeof Lenis !== 'undefined') {
@@ -107,6 +144,14 @@
                     nameInput.value = '';
                     emailInput.value = '';
 
+                    // Offer gravestone designer
+                    setTimeout(() => {
+                        const offerDesigner = confirm('🪦 Would you like to design your eternal memorial gravestone?\n\nClick OK to launch the Interactive Memorial Designer!');
+                        if (offerDesigner) {
+                            window.location.href = 'gravestone.html?from=registration';
+                        }
+                    }, 2000);
+
                     // Reset button text after a short delay
                 setTimeout(() => {
                     setSubmitLabel('Confirm Registration');
@@ -118,6 +163,133 @@
 
         // Initialize scroll animations when the page loads
         window.addEventListener('load', setupScrollAnimations);
+
+        // --- THEME TOGGLE FUNCTIONALITY ---
+        
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle?.querySelector('.theme-icon');
+            
+            if (!themeToggle) return;
+
+            // Check for saved theme preference or default to dark
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            if (currentTheme === 'light') {
+                document.body.classList.add('light-mode');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                const isLight = document.body.classList.contains('light-mode');
+                
+                // Update icon
+                if (themeIcon) {
+                    themeIcon.textContent = isLight ? '☀️' : '🌙';
+                }
+                
+                // Save preference
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                
+                // Add a subtle pulse animation
+                themeToggle.style.transform = 'scale(1.2) rotate(15deg)';
+                setTimeout(() => {
+                    themeToggle.style.transform = '';
+                }, 200);
+            });
+        }
+
+        // --- PARTICLE EFFECTS SYSTEM ---
+        
+        function createParticleSystem() {
+            const container = document.getElementById('particles-container');
+            if (!container) return;
+
+            // Create ember particles
+            function createEmber() {
+                const ember = document.createElement('div');
+                ember.className = 'particle ember';
+                
+                // Random starting position
+                ember.style.left = Math.random() * 100 + '%';
+                ember.style.bottom = '-10px';
+                
+                // Random drift
+                ember.style.setProperty('--drift', (Math.random() - 0.5) * 100 + 'px');
+                
+                // Random duration
+                const duration = 8 + Math.random() * 7;
+                ember.style.animationDuration = duration + 's';
+                
+                // Random delay
+                ember.style.animationDelay = Math.random() * 3 + 's';
+                
+                container.appendChild(ember);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    ember.remove();
+                }, (duration + 3) * 1000);
+            }
+
+            // Create fog particles
+            function createFog() {
+                const fog = document.createElement('div');
+                fog.className = 'particle fog-particle';
+                
+                fog.style.left = Math.random() * 100 + '%';
+                fog.style.bottom = '-80px';
+                fog.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
+                
+                const duration = 15 + Math.random() * 10;
+                fog.style.animationDuration = duration + 's';
+                fog.style.animationDelay = Math.random() * 5 + 's';
+                
+                container.appendChild(fog);
+                
+                setTimeout(() => {
+                    fog.remove();
+                }, (duration + 5) * 1000);
+            }
+
+            // Generate particles periodically
+            setInterval(createEmber, 300);
+            setInterval(createFog, 2000);
+            
+            // Initial burst
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createEmber, i * 200);
+            }
+            for (let i = 0; i < 3; i++) {
+                setTimeout(createFog, i * 1000);
+            }
+        }
+
+        // --- BLOOD DRIP GENERATION ---
+        
+        function createBloodDrips() {
+            const containers = document.querySelectorAll('.blood-drip-container');
+            containers.forEach(container => {
+                // Create 8-12 drips per container
+                const dripCount = 8 + Math.floor(Math.random() * 5);
+                for (let i = 0; i < dripCount; i++) {
+                    const drip = document.createElement('div');
+                    drip.className = 'blood-drip';
+                    drip.style.left = (Math.random() * 100) + '%';
+                    drip.style.animationDelay = (Math.random() * 3) + 's';
+                    drip.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    container.appendChild(drip);
+                }
+            });
+        }
+
+        // Initialize all new features on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            initMobileMenu();
+            initThemeToggle();
+            createParticleSystem();
+            createBloodDrips();
+        });
 
         // Initialize AOS (Animate On Scroll) and Vanta background on load
         window.addEventListener('load', () => {

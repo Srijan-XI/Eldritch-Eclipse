@@ -1,9 +1,23 @@
-      /* Define custom styles and keyframe animations */
+      /* ========================================
+         UNIFIED HALLOWEEN THEME STYLES
+         Combined app.css with shared styles
+         ======================================== */
 
         :root {
             --color-dark: #0A0A0A; /* PURE DEEP BLACK for maximum oppression */
             --color-accent: #FFC000; /* BRIGHTER, SICKLY GOLD GLOW */
             --color-header: #B30000; /* VISCERAL, DARKER BLOOD RED */
+            
+            /* Extended color scheme variables */
+            --color-bg-dark: #0A0A0A;
+            --color-accent-gold: #FFC000;
+            --color-blood-red: #B30000;
+            --color-card-bg: #1a1a1a;
+            --color-border: #333333;
+            --color-border-light: #555555;
+            --color-text-primary: #f0f0f0;
+            --color-text-secondary: #d1d1d1;
+            --color-text-muted: #9ca3af;
         }
 
         body {
@@ -11,6 +25,7 @@
             background-color: var(--color-dark);
             color: #f0f0f0;
             overflow-x: hidden;
+            position: relative;
             /* New: Subtle film grain/distress effect */
             filter: sepia(0.05) contrast(1.05);
         }
@@ -54,6 +69,20 @@
             /* Retaining the original dark gradient as a base */
             background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%);
             min-height: 80vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Ensure all sections are above background effects */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer always on top */
+        footer {
+            position: relative;
+            z-index: 20;
         }
 
         /* Custom Card Styles for Feature Section */
@@ -499,4 +528,1437 @@
                 100% 100%, 82% 100%, 0 100%
             );
             height: 80%;
+        }
+
+        /* ============================================
+           LIGHT/DARK THEME TOGGLE
+           ============================================ */
+        
+        body.light-mode {
+            --color-dark: #F5F5F5;
+            --color-accent: #FF6B00;
+            --color-header: #8B0000;
+            background-color: #FFFFFF;
+            color: #1a1a1a;
+            filter: sepia(0) contrast(1);
+        }
+
+        body.light-mode .hero-bg {
+            background: linear-gradient(180deg, rgba(255, 245, 230, 0.95) 0%, rgba(255, 235, 205, 0.95) 100%);
+        }
+
+        body.light-mode .feature-card,
+        body.light-mode .pricing-card {
+            background: linear-gradient(145deg, #E8E8E8, #C8C8C8);
+            border-color: #999;
+            color: #1a1a1a;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .pricing-card::before {
+            background: linear-gradient(145deg, #E8E8E8, #C8C8C8);
+            border-color: #999;
+            box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .pricing-card::after {
+            background: linear-gradient(145deg, #D8D8D8, #B8B8B8);
+            border-color: #888;
+        }
+
+        body.light-mode .pricing-card:hover {
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(255, 140, 0, 0.6),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .pricing-card:hover::before {
+            box-shadow: 
+                inset 0 -5px 15px rgba(0, 0, 0, 0.2),
+                0 0 30px rgba(255, 140, 0, 0.6);
+        }
+
+        body.light-mode .form-input {
+            background-color: #FFF8F0;
+            border-color: #FFD7B5;
+            color: #1a1a1a;
+        }
+
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-bottom: 1px solid #FFB380;
+        }
+
+        body.light-mode h1,
+        body.light-mode h2,
+        body.light-mode h3,
+        body.light-mode h4,
+        body.light-mode nav a {
+            color: #1a1a1a !important;
+        }
+
+        body.light-mode .text-gray-300,
+        body.light-mode .text-gray-400 {
+            color: #555 !important;
+        }
+
+        body.light-mode footer {
+            background: #FFF8F0;
+            border-top-color: #FFB380;
+        }
+
+        .theme-toggle-btn {
+            background: var(--color-header);
+            border: 2px solid var(--color-accent);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 0 20px var(--color-accent);
+        }
+
+        .theme-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* ============================================
+           PRICING SECTION STYLES - GRAVESTONE DESIGN
+           ============================================ */
+
+        .pricing-card {
+            background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+            border: 3px solid #555;
+            transition: all 0.4s ease;
+            position: relative;
+            border-radius: 0;
+            clip-path: none;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.8),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.5);
+            overflow: visible;
+        }
+
+        /* Arched top shape */
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 75%;
+            background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+            border: 3px solid #555;
+            border-bottom: none;
+            border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+            z-index: 1;
+            box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Base pedestal */
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            height: 30px;
+            background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
+            border: 3px solid #666;
+            border-top: none;
+            z-index: 0;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.6),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Stone texture overlay */
+        .pricing-card .gravestone-moss {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 75%;
+            background: 
+                linear-gradient(90deg, transparent 49%, rgba(0, 0, 0, 0.3) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, rgba(0, 0, 0, 0.3) 50%, transparent 51%),
+                radial-gradient(circle at 60% 40%, rgba(50, 50, 50, 0.1) 0%, transparent 5%),
+                radial-gradient(circle at 30% 60%, rgba(40, 40, 40, 0.08) 0%, transparent 4%),
+                radial-gradient(circle at 80% 70%, rgba(45, 45, 45, 0.09) 0%, transparent 6%),
+                radial-gradient(circle at 20% 30%, rgba(0, 100, 0, 0.1) 0%, transparent 15%),
+                radial-gradient(circle at 80% 20%, rgba(0, 80, 0, 0.08) 0%, transparent 12%),
+                radial-gradient(circle at 40% 70%, rgba(0, 100, 0, 0.12) 0%, transparent 18%);
+            background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.4;
+            border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            border-color: var(--color-accent);
+            box-shadow: 
+                0 25px 50px rgba(179, 0, 0, 0.8), 
+                0 0 40px var(--color-accent),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .pricing-card:hover::before {
+            border-color: var(--color-accent);
+            box-shadow: 
+                inset 0 -5px 15px rgba(0, 0, 0, 0.3),
+                0 0 30px var(--color-accent);
+        }
+
+        .pricing-card:hover::after {
+            border-color: var(--color-accent);
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.8),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.4),
+                0 0 20px var(--color-accent);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-accent);
+            background: linear-gradient(145deg, #4a3a3a, #2a1a1a);
+            transform: scale(1.05);
+            box-shadow: 
+                0 25px 50px rgba(179, 0, 0, 0.6),
+                0 0 30px var(--color-accent),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .pricing-card.featured::before {
+            background: linear-gradient(145deg, #4a3a3a, #2a1a1a);
+            border-color: var(--color-accent);
+        }
+
+        .pricing-card.featured::after {
+            background: linear-gradient(145deg, #5a4a4a, #3a2a2a);
+            border-color: var(--color-accent);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-15px) scale(1.08) rotate(-1deg);
+        }
+
+        .pricing-card.vip {
+            border-color: #8B00FF;
+            background: linear-gradient(145deg, #3a2a4a, #1a0a2e);
+            box-shadow: 
+                0 20px 40px rgba(75, 0, 130, 0.6),
+                0 0 30px rgba(139, 0, 255, 0.4),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .pricing-card.vip::before {
+            background: linear-gradient(145deg, #3a2a4a, #1a0a2e);
+            border-color: #8B00FF;
+        }
+
+        .pricing-card.vip::after {
+            background: linear-gradient(145deg, #4a3a5a, #2a1a3e);
+            border-color: #8B00FF;
+        }
+
+        .pricing-card.vip:hover {
+            box-shadow: 
+                0 25px 50px rgba(75, 0, 130, 0.8),
+                0 0 50px rgba(139, 0, 255, 0.8),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .pricing-card.vip:hover::before {
+            border-color: #8B00FF;
+            box-shadow: 
+                inset 0 -5px 15px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(139, 0, 255, 0.8);
+        }
+
+        .pricing-card.vip:hover::after {
+            border-color: #8B00FF;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.8),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(139, 0, 255, 0.8);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--color-accent);
+            color: var(--color-dark);
+            padding: 6px 20px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            transform: rotate(-2deg);
+            box-shadow: 0 4px 10px rgba(255, 192, 0, 0.5);
+            z-index: 10;
+            clip-path: polygon(5% 0%, 95% 0%, 100% 20%, 100% 80%, 95% 100%, 5% 100%, 0% 80%, 0% 20%);
+        }
+
+        .price-tag {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 0;
+            border: 2px solid var(--color-header);
+            border-left: none;
+            border-right: none;
+            position: relative;
+        }
+
+        .price-tag::before,
+        .price-tag::after {
+            content: '☠';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.3;
+        }
+
+        .price-tag::before {
+            left: 10px;
+        }
+
+        .price-tag::after {
+            right: 10px;
+        }
+
+        /* Gravestone inscription effect */
+        .pricing-card h4 {
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 10px rgba(179, 0, 0, 0.5);
+            font-size: 1.8rem !important;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Cracks in gravestone */
+        .pricing-card .gravestone-moss::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 1px;
+            height: 30%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3), transparent);
+            transform: rotate(-15deg);
+        }
+
+        .pricing-card .gravestone-moss::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: 30%;
+            width: 1px;
+            height: 25%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.25), transparent);
+            transform: rotate(20deg);
+        }
+
+        .btn-pricing {
+            display: inline-block;
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            background: var(--color-header);
+            color: #fff;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid #000;
+            box-shadow: 
+                inset 0 -2px 5px rgba(0, 0, 0, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-pricing:hover::before {
+            left: 100%;
+        }
+
+        .btn-pricing:hover {
+            background: var(--color-accent);
+            color: var(--color-dark);
+            border-color: var(--color-header);
+            box-shadow: 
+                0 0 20px var(--color-accent),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-pricing.vip {
+            background: linear-gradient(135deg, #8B00FF, #4B0082);
+            border-color: #2a1a3a;
+        }
+
+        .btn-pricing.vip:hover {
+            background: linear-gradient(135deg, #B030FF, #6B10A2);
+            box-shadow: 
+                0 0 25px rgba(139, 0, 255, 0.8),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ============================================
+           PARTICLE EFFECTS
+           ============================================ */
+
+        .particles-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            animation: float-up linear forwards;
+        }
+
+        .ember {
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #FF6B00, #FF0000);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #FF6B00, 0 0 20px #FF0000;
+        }
+
+        .fog-particle {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(200, 200, 200, 0.3), transparent);
+            border-radius: 50%;
+            filter: blur(15px);
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(var(--drift, 0));
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           FLOATING GHOSTS
+           ============================================ */
+
+        .floating-ghosts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .ghost {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.4;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            animation: float-ghost linear infinite;
+        }
+
+        .ghost-1 {
+            left: 10%;
+            top: -10%;
+            animation-duration: 25s;
+            animation-delay: 0s;
+        }
+
+        .ghost-2 {
+            left: 60%;
+            top: -10%;
+            animation-duration: 30s;
+            animation-delay: 5s;
+        }
+
+        .ghost-3 {
+            left: 85%;
+            top: -10%;
+            animation-duration: 28s;
+            animation-delay: 10s;
+        }
+
+        @keyframes float-ghost {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(50vh) translateX(20px) rotate(5deg);
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(110vh) translateX(-20px) rotate(-5deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           BLOOD DRIP ANIMATION
+           ============================================ */
+
+        .blood-drip-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            overflow: visible;
+            z-index: 5;
+        }
+
+        .blood-drip {
+            position: absolute;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(to bottom, #8B0000, #4B0000);
+            animation: drip 3s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes drip {
+            0% {
+                height: 0;
+                top: 0;
+            }
+            50% {
+                height: 40px;
+                top: 0;
+            }
+            100% {
+                height: 40px;
+                top: 40px;
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           FLICKERING LIGHTS EFFECT
+           ============================================ */
+
+        .flicker-light {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--color-accent), transparent);
+            border-radius: 50%;
+            animation: flicker 4s infinite;
+            opacity: 0.6;
+            filter: blur(8px);
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 0.6; }
+            10% { opacity: 0.2; }
+            20% { opacity: 0.8; }
+            30% { opacity: 0.3; }
+            40% { opacity: 0.9; }
+            50% { opacity: 0.4; }
+            60% { opacity: 0.7; }
+            70% { opacity: 0.3; }
+            80% { opacity: 0.8; }
+            90% { opacity: 0.5; }
+        }
+
+        /* ============================================
+           SMOKE/MIST TRANSITIONS
+           ============================================ */
+
+        .smoke-transition {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            z-index: 5;
+            opacity: 0.7;
+            animation: smoke-wave 8s ease-in-out infinite;
+        }
+
+        @keyframes smoke-wave {
+            0%, 100% {
+                transform: translateX(0);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(10px);
+                opacity: 0.5;
+            }
+        }
+
+        /* Gravestone ground/grass effect */
+        #pricing {
+            position: relative;
+        }
+
+        #pricing::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: 
+                linear-gradient(to bottom, transparent, rgba(20, 50, 20, 0.3) 40%, rgba(10, 30, 10, 0.6)),
+                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 100, 0, 0.1) 3px, rgba(0, 100, 0, 0.1) 6px);
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        #pricing .grid {
+            padding-bottom: 60px;
+            gap: 3rem;
+        }
+
+        /* Add margin to pricing cards for pedestal */
+        .pricing-card {
+            margin-bottom: 30px;
+        }
+
+        /* ============================================
+           SPIDER WEB OVERLAYS
+           ============================================ */
+
+        .spider-web {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 2;
+            background-image: 
+                radial-gradient(circle at center, transparent 40%, rgba(255, 255, 255, 0.1) 41%, transparent 42%),
+                linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.1) 49%, rgba(255, 255, 255, 0.1) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.1) 49%, rgba(255, 255, 255, 0.1) 51%, transparent 52%),
+                linear-gradient(90deg, transparent 48%, rgba(255, 255, 255, 0.1) 49%, rgba(255, 255, 255, 0.1) 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%, rgba(255, 255, 255, 0.1) 49%, rgba(255, 255, 255, 0.1) 51%, transparent 52%);
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        .spider-web.top-left {
+            top: 0;
+            left: 0;
+        }
+
+        .spider-web.top-right {
+            top: 0;
+            right: 0;
+            transform: scaleX(-1);
+        }
+
+        .spider-web.bottom-left {
+            bottom: 0;
+            left: 0;
+            transform: scaleY(-1);
+        }
+
+        .spider-web.bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: scale(-1);
+        }
+
+        /* Light mode adjustments for new features */
+        body.light-mode .ember {
+            background: radial-gradient(circle, #FF8C00, #FF4500);
+            box-shadow: 0 0 10px #FF8C00, 0 0 20px #FF4500;
+        }
+
+        body.light-mode .ghost {
+            opacity: 0.3;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+        }
+
+        body.light-mode .blood-drip {
+            background: linear-gradient(to bottom, #CC0000, #880000);
+        }
+
+        body.light-mode .spider-web {
+            opacity: 0.2;
+            background-image: 
+                radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.1) 41%, transparent 42%),
+                linear-gradient(45deg, transparent 48%, rgba(0, 0, 0, 0.1) 49%, rgba(0, 0, 0, 0.1) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(0, 0, 0, 0.1) 49%, rgba(0, 0, 0, 0.1) 51%, transparent 52%),
+                linear-gradient(90deg, transparent 48%, rgba(0, 0, 0, 0.1) 49%, rgba(0, 0, 0, 0.1) 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%, rgba(0, 0, 0, 0.1) 49%, rgba(0, 0, 0, 0.1) 51%, transparent 52%);
+        }
+
+        /* --- MOBILE RESPONSIVE IMPROVEMENTS --- */
+
+        /* Reduce particle effects on mobile for better performance */
+        @media (max-width: 768px) {
+            .particles-container {
+                opacity: 0.5;
+            }
+            
+            .floating-ghosts .ghost {
+                font-size: 1.5rem;
+            }
+            
+            /* Adjust hero min height for mobile */
+            .hero-bg {
+                min-height: 60vh;
+            }
+            
+            /* Reduce animation complexity on mobile */
+            .feature-card:hover {
+                transform: translateY(-3px) scale(1.01);
+            }
+            
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Optimize pricing cards for mobile */
+            .pricing-card {
+                max-width: 100%;
+            }
+            
+            /* Better spacing for mobile text */
+            p, li {
+                line-height: 1.6;
+            }
+            
+            /* Reduce glitch intensity on mobile */
+            .glitch-title {
+                animation: text-glitch 0.3s infinite alternate, pulse-glow 3s ease-in-out infinite;
+            }
+            
+            /* Make spider webs less intrusive on mobile */
+            .spider-web {
+                opacity: 0.3;
+            }
+            
+            /* Simplify blood drips on mobile */
+            .blood-drip-container {
+                opacity: 0.5;
+            }
+            
+            /* Optimize form for mobile */
+            .form-input {
+                font-size: 16px; /* Prevent iOS zoom on focus */
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            /* Further reduce effects */
+            .particles-container {
+                opacity: 0.3;
+            }
+            
+            .floating-ghosts .ghost-2,
+            .floating-ghosts .ghost-3 {
+                display: none; /* Show only one ghost on very small screens */
+            }
+            
+            /* Optimize button spacing */
+            .btn, .cta-button, .crush-btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            
+            /* Better mobile menu */
+            #mobileMenu {
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+            
+            #mobileMenu a {
+                padding: 12px 16px;
+                display: block;
+            }
+        }
+
+        /* Landscape mobile orientation */
+        @media (max-width: 896px) and (orientation: landscape) {
+            .hero-bg {
+                min-height: 100vh;
+            }
+            
+            /* Reduce vertical padding in landscape */
+            section {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+        }
+
+        /* Tablet improvements */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            /* Optimize pricing cards for tablet */
+            .pricing-card {
+                max-width: 100%;
+            }
+            
+            /* Better grid layouts */
+            .feature-card {
+                min-height: 280px;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            /* Remove hover effects on touch devices */
+            .feature-card:hover {
+                transform: none;
+            }
+            
+            .cta-button:hover {
+                transform: none;
+            }
+            
+            /* Add active states instead */
+            .feature-card:active {
+                transform: scale(0.98);
+            }
+            
+            .cta-button:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            /* Sharper text rendering */
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        /* Accessibility - Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .floating-ghosts, .particles-container {
+                display: none;
+            }
+        }
+
+        /* ============================================
+           ADDITIONAL SHARED UTILITIES
+           ============================================ */
+
+        /* Halloween-themed reusable button class */
+        .halloween-btn {
+            background: var(--color-blood-red);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(179, 0, 0, 0.8);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .halloween-btn:hover {
+            background: #CC0000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px var(--color-accent-gold), 0 0 15px var(--color-blood-red);
+        }
+
+        .halloween-btn:active {
+            transform: translateY(0);
+        }
+
+        .halloween-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Halloween-themed card class */
+        .halloween-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .halloween-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(179, 0, 0, 0.5);
+        }
+
+        /* Halloween-themed input class */
+        .halloween-input {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border-light);
+            color: var(--color-text-primary);
+            padding: 10px 14px;
+            border-radius: 8px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-size: 16px; /* Prevent iOS zoom */
+        }
+
+        .halloween-input:focus {
+            border-color: var(--color-accent-gold);
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 192, 0, 0.5);
+        }
+
+        .halloween-input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        /* Enhanced glitch effect for shared use */
+        @keyframes glitchPulse {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px var(--color-accent-gold), 
+                    0 0 10px var(--color-blood-red),
+                    2px 0 var(--color-blood-red);
+            }
+            25% { 
+                text-shadow: 
+                    0 0 30px var(--color-accent-gold), 
+                    0 0 20px var(--color-blood-red),
+                    -2px -2px var(--color-accent-gold);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 35px var(--color-accent-gold), 
+                    0 0 25px var(--color-blood-red),
+                    1px 1px var(--color-blood-red);
+            }
+            75% { 
+                text-shadow: 
+                    0 0 30px var(--color-accent-gold), 
+                    0 0 20px var(--color-blood-red),
+                    -1px 2px var(--color-accent-gold);
+            }
+        }
+
+        /* Shared loading spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+        }
+
+        /* Focus visible for keyboard navigation (accessibility) */
+        *:focus-visible {
+            outline: 2px solid var(--color-accent-gold);
+            outline-offset: 2px;
+        }
+
+        /* Light mode adjustments for shared utilities */
+        body.light-mode {
+            --color-bg-dark: #ffffff;
+            --color-card-bg: #f5f5f5;
+            --color-border: #e0e0e0;
+            --color-border-light: #d0d0d0;
+            --color-text-primary: #1a1a1a;
+            --color-text-secondary: #4a4a4a;
+            --color-text-muted: #6b7280;
+        }
+
+        body.light-mode .halloween-card {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .halloween-card:hover {
+            box-shadow: 0 8px 20px rgba(179, 0, 0, 0.3);
+        }
+
+        /* Responsive adjustments for shared utilities */
+        @media (max-width: 768px) {
+            .halloween-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .halloween-card {
+                padding: 16px;
+            }
+        }
+
+        /* Touch device optimizations for shared utilities */
+        @media (hover: none) and (pointer: coarse) {
+            .halloween-btn:hover,
+            .halloween-card:hover {
+                transform: none;
+            }
+            
+            .halloween-btn:active {
+                transform: scale(0.95);
+            }
+            
+            .halloween-card:active {
+                transform: scale(0.98);
+            }
+        }
+
+        /* ============================================
+           GRAVESTONE DESIGNER STYLES
+           ============================================ */
+
+        /* Custom font classes for gravestone */
+        .font-serif-classic { font-family: 'Times New Roman', Times, serif; }
+        .font-sans-modern { font-family: 'Inter', sans-serif; }
+        .font-script-elegant { font-family: 'Dancing Script', cursive; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-typewriter { font-family: 'Special Elite', cursive; }
+
+        /* Animated background for gravestone page */
+        body.gravestone-page {
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body.gravestone-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(179, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 192, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: backgroundPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Floating particles for gravestone page */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Gravestone preview styling */
+        #gravestone-preview {
+            transition: all 0.5s ease-in-out;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.7), 
+                inset 0 0 20px rgba(255, 255, 255, 0.1),
+                0 0 0 3px rgba(0, 0, 0, 0.3);
+            border: 4px solid;
+            position: relative;
+            overflow: hidden;
+            animation: stoneFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes stoneFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        #gravestone-preview:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.9), 
+                inset 0 0 30px rgba(255, 255, 255, 0.2),
+                0 0 40px rgba(255, 192, 0, 0.5);
+        }
+
+        /* Stone texture overlay */
+        #gravestone-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Text glow effect */
+        #gravestone-preview p,
+        #gravestone-preview #preview-icon {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        #gravestone-preview:hover p,
+        #gravestone-preview:hover #preview-icon {
+            text-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+        }
+
+        /* Moss/Weathering Effect */
+        #gravestone-preview.mossy-effect {
+            filter: grayscale(15%) brightness(92%) contrast(1.1);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.7), 
+                inset 0 0 20px rgba(255, 255, 255, 0.1),
+                inset 15px 15px 25px rgba(20, 60, 20, 0.7),
+                inset -10px -10px 20px rgba(100, 140, 100, 0.5),
+                0 0 0 3px rgba(40, 80, 40, 0.4);
+        }
+
+        #gravestone-preview.mossy-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(34, 139, 34, 0.3) 0%, transparent 15%),
+                radial-gradient(circle at 80% 40%, rgba(46, 125, 50, 0.25) 0%, transparent 12%),
+                radial-gradient(circle at 40% 70%, rgba(27, 94, 32, 0.28) 0%, transparent 18%),
+                radial-gradient(circle at 65% 85%, rgba(56, 142, 60, 0.22) 0%, transparent 10%);
+            pointer-events: none;
+            z-index: 1;
+            animation: mossGrow 8s ease-in-out infinite;
+        }
+
+        @keyframes mossGrow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Cracks effect */
+        #gravestone-preview.cracked::before {
+            background-image: 
+                linear-gradient(135deg, transparent 48%, rgba(0, 0, 0, 0.6) 49%, rgba(0, 0, 0, 0.6) 51%, transparent 52%),
+                linear-gradient(45deg, transparent 48%, rgba(0, 0, 0, 0.4) 49%, rgba(0, 0, 0, 0.4) 50%, transparent 51%);
+            background-size: 8px 100%, 12px 100%;
+            background-position: 30% 0, 70% 0;
+            background-repeat: no-repeat;
+        }
+
+        /* Stone color styles */
+        .color-granite-gray {
+            background: #4A4A4A;
+            background: linear-gradient(145deg, #5c5c5c 0%, #3a3a3a 100%);
+            border-color: #333;
+        }
+        .color-granite-black {
+            background: #252525;
+            background: linear-gradient(145deg, #333333 0%, #1a1a1a 100%);
+            border-color: #0d0d0d;
+        }
+        .color-marble-white {
+            background: #ECECEC;
+            background: linear-gradient(145deg, #F5F5F5 0%, #BDBDBD 100%);
+            border-color: #A0A0A0;
+        }
+        .color-rose-red {
+            background: #6C1E2A;
+            background: linear-gradient(145deg, #882b3a 0%, #541721 100%);
+            border-color: #3c1117;
+        }
+        .color-green-jade {
+            background: #38761D;
+            background: linear-gradient(145deg, #448924 0%, #2D6317 100%);
+            border-color: #254F10;
+        }
+        .color-blue-pearl {
+            background: #2A4565;
+            background: linear-gradient(145deg, #3C608C 0%, #1F344A 100%);
+            border-color: #192C3D;
+        }
+        .color-obsidian-black {
+            background: #0d0d0d;
+            background: linear-gradient(145deg, #1a1a1a 0%, #000000 100%);
+            border-color: #000000;
+        }
+        .color-sandstone-tan {
+            background: #D4A574;
+            background: linear-gradient(145deg, #E8C9A0 0%, #B8895A 100%);
+            border-color: #9A7548;
+        }
+        .color-purple-amethyst {
+            background: #6A1B9A;
+            background: linear-gradient(145deg, #8E24AA 0%, #4A148C 100%);
+            border-color: #38006B;
+        }
+
+        /* Stone shape styles */
+        .shape-rectangle {
+            border-radius: 8px;
+            height: 350px;
+        }
+
+        .shape-arched {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-top-left-radius: 175px;
+            border-top-right-radius: 175px;
+            height: 350px;
+        }
+
+        .shape-oval {
+            border-radius: 50%;
+            height: 400px;
+            width: 250px;
+        }
+
+        .shape-cross {
+            width: 250px;
+            height: 350px;
+            clip-path: polygon(
+                40% 0%, 60% 0%,
+                60% 30%, 100% 30%,
+                100% 50%, 60% 50%,
+                60% 100%, 40% 100%,
+                40% 50%, 0% 50%,
+                0% 30%, 40% 30%
+            );
+        }
+
+        .shape-heart {
+            width: 280px;
+            height: 350px;
+            clip-path: path('M140,30 C115,5 75,5 50,30 C25,55 25,85 50,110 L140,200 L230,110 C255,85 255,55 230,30 C205,5 165,5 140,30 Z');
+            transform: scale(0.9);
+        }
+
+        /* The base below the stone */
+        #base {
+            background: linear-gradient(145deg, #666 0%, #444 100%);
+            box-shadow: 
+                0 8px 15px rgba(0, 0, 0, 0.8),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        #base:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.9),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Engraving color classes */
+        .engraving-gold { color: #FFD700; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+        .engraving-silver { color: #C0C0C0; text-shadow: 0 0 5px rgba(192, 192, 192, 0.5); }
+        .engraving-white { color: #F8F8FF; text-shadow: 0 0 5px rgba(248, 248, 255, 0.3); }
+
+        /* Icon styling */
+        #preview-icon {
+            font-size: 40px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        /* Blood Drip effect */
+        #blood-drip {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 120px;
+            background: linear-gradient(180deg, #8B0000 0%, #4B0000 100%);
+            border-radius: 0 0 50% 50%;
+            filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.9));
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 10;
+            animation: bloodDrip 4s ease-in-out infinite;
+            clip-path: polygon(
+                45% 0%, 55% 0%,
+                60% 10%, 70% 20%,
+                100% 35%, 100% 50%,
+                85% 70%, 70% 85%,
+                55% 100%, 45% 100%,
+                30% 85%, 15% 70%,
+                0% 50%, 0% 35%,
+                30% 20%, 40% 10%
+            );
+        }
+
+        @keyframes bloodDrip {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(5px); }
+        }
+
+        #blood-drip.active {
+            opacity: 1;
+        }
+
+        /* Glowing orb effect */
+        .glow-orb {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 192, 0, 0.8), transparent);
+            box-shadow: 0 0 20px rgba(255, 192, 0, 0.8);
+            animation: orbFloat 5s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { 
+                transform: translate(0, 0);
+                opacity: 0.6;
+            }
+            25% { transform: translate(20px, -10px); }
+            50% { 
+                transform: translate(40px, 5px);
+                opacity: 1;
+            }
+            75% { transform: translate(20px, 15px); }
+        }
+
+        /* Export button styling */
+        .export-btn {
+            background: #B30000;
+            box-shadow: 0 0 15px rgba(179, 0, 0, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .export-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 192, 0, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .export-btn:hover::before {
+            left: 100%;
+        }
+
+        .export-btn:hover {
+            background: #CC0000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px #FFC000, 0 0 5px #B30000;
+        }
+
+        .export-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Control panel enhancements */
+        #controls-panel {
+            backdrop-filter: blur(10px);
+        }
+
+        /* Loading spinner animation */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
         }

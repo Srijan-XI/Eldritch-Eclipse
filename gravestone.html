@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪦 Ultimate Gravestone Designer | Halloween Edition</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Creepster&family=Cinzel:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+    <!-- html2canvas for export functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="app.css">
+</head>
+<body class="gravestone-page bg-[#0A0A0A] text-gray-100 min-h-screen p-4 sm:p-8 font-inter transition-colors duration-500" style="filter: sepia(0.05) contrast(1.05);">
+    
+    <!-- Floating particles -->
+    <div class="particle" style="left: 10%; animation-delay: 0s; font-size: 24px;">🦇</div>
+    <div class="particle" style="left: 30%; animation-delay: 3s; font-size: 20px;">👻</div>
+    <div class="particle" style="left: 50%; animation-delay: 6s; font-size: 28px;">💀</div>
+    <div class="particle" style="left: 70%; animation-delay: 9s; font-size: 22px;">🕷️</div>
+    <div class="particle" style="left: 90%; animation-delay: 12s; font-size: 26px;">🕸️</div>
+
+    <header class="text-center mb-10 relative z-10">
+        <!-- Back to Event Link -->
+        <div class="mb-4">
+            <a href="index.html" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#FFC000] transition-colors duration-300 group">
+                <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Eldritch Eclipse Event
+            </a>
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white transition-colors duration-500 mb-2" style="font-family: 'Creepster', cursive; text-shadow: 0 0 20px #FFC000, 0 0 10px #B30000;">
+            🪦 Epitaph Graveyard 🪦
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-300 mt-2 transition-colors duration-500">Design your eternal memorial with style</p>
+        <p class="text-sm text-gray-500 mt-1">✨ Halloween Edition ✨</p>
+    </header>
+
+    <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
+        <!-- Configuration Panel --><div id="controls-panel" class="lg:w-1/3 p-6 bg-[#1a1a1a] border border-[#333333] rounded-xl shadow-2xl space-y-6 transition-colors duration-500">
+            <h2 class="text-2xl font-semibold border-b border-[#333333] pb-3 mb-4 transition-colors duration-500">Design Controls</h2>
+
+            <!-- NEW: Scene Theme Selector -->
+            <div id="scene-theme-control">
+                <label for="select-scene-theme" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Scene Theme</label>
+                <select id="select-scene-theme" onchange="updateStone()" class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+                    <option value="gothic-night">Gothic Night (Dark)</option>
+                    <option value="bright-day">Bright Day (Traditional)</option>
+                </select>
+            </div>
+
+            <!-- Stone Color Selector --><div>
+                <label for="select-color" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Stone Material / Color</label>
+                <select id="select-color" onchange="updateStone()" class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+                    <option value="granite-gray">Classic Gray Granite</option>
+                    <option value="granite-black">Deep Black Granite</option>
+                    <option value="marble-white">White Marble</option>
+                    <option value="rose-red">Rose Red Granite</option>
+                    <option value="green-jade">Green Jade</option>
+                    <option value="blue-pearl">Blue Pearl</option>
+                    <option value="obsidian-black">Obsidian Black</option>
+                    <option value="sandstone-tan">Sandstone Tan</option>
+                    <option value="purple-amethyst">Purple Amethyst</option>
+                </select>
+            </div>
+
+            <!-- Shape Selector --><div>
+                <label for="select-shape" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Shape</label>
+                <select id="select-shape" onchange="updateStone()" class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+                    <option value="rectangle">Classic Rectangle</option>
+                    <option value="arched">Arched Top</option>
+                    <option value="oval">Rounded Oval</option>
+                    <option value="cross">Cross Shape</option>
+                    <option value="heart">Heart Shape</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Icon Selector --><div>
+                    <label for="select-icon" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Icon / Symbol</label>
+                    <select id="select-icon" onchange="updateStone()" class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+                        <option value="none">None</option>
+                        <option value="cross">† Cross</option>
+                        <option value="heart">❤️ Heart</option>
+                        <option value="star">★ Star</option>
+                        <option value="dove">🕊️ Dove</option>
+                        <option value="angel">👼 Angel</option>
+                        <option value="rose">🌹 Rose</option>
+                        <option value="skull">💀 Skull</option>
+                        <option value="moon">🌙 Moon</option>
+                    </select>
+                </div>
+
+                <!-- Engraving Color Selector --><div>
+                    <label for="select-engraving-color" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Engraving Color</label>
+                    <select id="select-engraving-color" onchange="updateStone()" class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+                        <option value="white">Classic White</option>
+                        <option value="gold">Gold Leaf</option>
+                        <option value="silver">Silver Inlay</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Blood Drip Toggle --><div class="flex items-center justify-between p-2 bg-[#1a1a1a] rounded-lg border border-[#555555] transition-colors duration-500">
+                <label for="toggle-blood-drip" class="text-sm font-medium text-gray-300 transition-colors duration-500">Add Blood Drip 🩸</label>
+                <input type="checkbox" id="toggle-blood-drip" onchange="updateStone()"
+                       class="h-5 w-5 text-red-600 rounded border-gray-300 focus:ring-red-500">
+            </div>
+
+            <!-- Moss/Weathering Toggle --><div class="flex items-center justify-between p-2 bg-[#1a1a1a] rounded-lg border border-[#555555] transition-colors duration-500">
+                <label for="toggle-moss-effect" class="text-sm font-medium text-gray-300 transition-colors duration-500">Add Moss/Weathering 🍃</label>
+                <input type="checkbox" id="toggle-moss-effect" onchange="updateStone()"
+                       class="h-5 w-5 text-green-600 rounded border-gray-300 focus:ring-green-500">
+            </div>
+
+            <!-- Cracks Toggle --><div class="flex items-center justify-between p-2 bg-[#1a1a1a] rounded-lg border border-[#555555] transition-colors duration-500">
+                <label for="toggle-cracks" class="text-sm font-medium text-gray-300 transition-colors duration-500">Add Cracks ⚡</label>
+                <input type="checkbox" id="toggle-cracks" onchange="updateStone()"
+                       class="h-5 w-5 text-gray-400 rounded border-gray-300 focus:ring-gray-500">
+            </div>
+
+            <!-- Font Selector --><div>
+                <label for="select-font" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Engraving Style (Font)</label>
+                <select id="select-font" onchange="updateStone()" class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+                    <option value="serif-classic">Classic Serif</option>
+                    <option value="sans-modern">Modern Sans-serif</option>
+                    <option value="script-elegant">Elegant Script</option>
+                    <option value="creepster">Spooky Creepster</option>
+                    <option value="cinzel">Elegant Cinzel</option>
+                    <option value="typewriter">Typewriter</option>
+                </select>
+            </div>
+
+            <!-- Name Input --><div>
+                <label for="input-name" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Name / Primary Line</label>
+                <input type="text" id="input-name" value="enter name" oninput="updateStone()" maxlength="30"
+                       class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+            </div>
+
+            <!-- Dates Input --><div>
+                <label for="input-dates" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Dates (e.g., 1945 - 2025)</label>
+                <input type="text" id="input-dates" value="1945 - 2025" oninput="updateStone()" maxlength="20"
+                       class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">
+            </div>
+
+            <!-- Epitaph/Quote Input --><div>
+                <label for="input-epitaph" class="block text-sm font-medium text-gray-300 mb-1 transition-colors duration-500">Epitaph / Quote</label>
+                <textarea id="input-epitaph" oninput="updateStone()" maxlength="100" rows="3"
+                          class="w-full p-2 rounded-lg bg-[#1a1a1a] border border-[#555555] focus:ring-[#FFC000] focus:border-[#FFC000] text-gray-100 transition-colors duration-500">Beloved Husband, Father, and Friend. Always in our hearts.</textarea>
+            </div>
+
+            <!-- Export Button -->
+            <button onclick="exportDesign()" class="export-btn w-full py-3 px-6 rounded-lg text-white font-bold text-lg shadow-lg">
+                📸 Export as Image
+            </button>
+
+            <!-- Share & Return Actions -->
+            <div class="mt-4 space-y-2">
+                <a href="index.html#register" class="block w-full py-2.5 px-4 rounded-lg bg-purple-700 hover:bg-purple-600 text-white font-bold text-center transition-all duration-300 shadow-lg hover:shadow-purple-500/50">
+                    🎃 Register for Event
+                </a>
+                
+                <button onclick="shareDesign()" class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold transition-all duration-300 shadow-lg">
+                    📤 Share Your Design
+                </button>
+            </div>
+        </div>
+
+        <!-- Preview Area --><div id="preview-area" class="lg:w-2/3 flex flex-col items-center justify-center p-6 bg-[#1a1a1a]/50 rounded-xl shadow-2xl h-[650px] relative overflow-hidden transition-colors duration-500">
+            <!-- Glowing orb -->
+            <div class="glow-orb" style="top: 20%; left: 15%;"></div>
+            <div class="glow-orb" style="top: 60%; right: 20%; animation-delay: 2s;"></div>
+            
+            <h2 class="text-xl font-semibold mb-4 text-gray-300 transition-colors duration-500">Live Preview</h2>
+
+            <div id="gravestone-container" class="flex flex-col items-center justify-end h-full">
+
+                <!-- The Stone itself --><div id="gravestone-preview" class="w-[250px] color-granite-gray transition-all duration-300 flex flex-col items-center justify-center p-4 text-center">
+                    <!-- NEW: Blood Drip element --><div id="blood-drip"></div>
+
+                    <div id="preview-icon" class="engraving-white"></div>
+                    <p id="preview-epitaph" class="text-xs mb-3 leading-tight font-sans-modern italic"></p>
+                    <p id="preview-name" class="text-3xl font-serif-classic font-bold mb-1"></p>
+                    <p id="preview-dates" class="text-lg font-serif-classic"></p>
+                </div>
+
+                <!-- The Base --><div id="base" class="w-[300px] h-12 rounded-t-lg mt-[-10px] z-10"></div>
+                <!-- Ground Simulation --><div id="ground-el" class="w-full h-20 bg-green-700 border-t-8 border-green-800 transition-colors duration-500"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="gravestone.js"></script>
+</body>
+</html>
